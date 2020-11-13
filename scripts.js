@@ -1,55 +1,51 @@
 let ignoreInitial = 0;
-
 const sketchContainer = document.querySelector('.content');
-
 const resetGrid = document.querySelector('.reset-button');
-
 
 createGrid()
 
 function createGrid(gridSize =20){
-
     sketchContainer.setAttribute('style',`grid-template-columns: repeat(${gridSize}, 1fr);, grid-template-rows: repeat(${gridSize}, 1fr);` )
-
-    let counter;
-
-    for (counter = 0; counter < gridSize **2; counter++){
-    let newDiv = document.createElement('div');
-    newDiv.classList.add('pexels')
-    sketchContainer.appendChild(newDiv);
+    for (let counter = 0; counter < gridSize **2; counter++){
+        let newDiv = document.createElement('div');
+        newDiv.classList.add('pexels')
+        sketchContainer.appendChild(newDiv);
     };
-
+    addColor()
 } 
-
-
+    
 function removeGrid(){
     let eachChild = document.querySelectorAll('.content div')
     eachChild.forEach((child) => {
-    child.remove()
+        child.remove()
+    }); 
 }
-    ) 
-    }
+
+function addColor(){
+    let hover = document.querySelectorAll('.content div');
+    removeColor(hover);
+    hover.forEach((item) => {
+        item.addEventListener('mouseover', () => {
+            item.setAttribute('style', 'background: blue;')
+        });
+    });
+}
+
+function removeColor(coloredPixels){
+    coloredPixels.forEach((pixel) => {
+        pixel.style.background = 'white';
+    });
+}
+
 
 
 
 // console.log(hover)
 
-// hover = document.querySelectorAll('.content div');
-
-// hover.forEach((item) => {
-//     item.addEventListener('mouseover', () => {
-//         item.setAttribute('style', 'background: blue;')
-//     });
-// })
-
 const eachPixel = document.querySelectorAll('.content div');
 
 
 function reset(){
-     eachPixel.forEach((item) => {
-         item.setAttribute('style', 'background-color: white;')
-        }
-     )
      removeGrid()
      createGrid(50);
  }
