@@ -1,10 +1,17 @@
 let ignoreInitial = 0;
 const sketchContainer = document.querySelector('.content');
 const resetGrid = document.querySelector('.reset-button');
+const slider = document.getElementById('slider');
+const slideWrapper = document.querySelector('.slideWrapper');
+const valueHolder = document.createElement('span');
+var start_value = 20;
+slider.value = start_value;
+valueHolder.innerHTML = start_value;
+slideWrapper.appendChild(valueHolder);
 
 createGrid()
 
-function createGrid(gridSize =20){
+function createGrid(gridSize = start_value){
     sketchContainer.setAttribute('style',`grid-template-columns: repeat(${gridSize}, 1fr);, grid-template-rows: repeat(${gridSize}, 1fr);` )
     for (let counter = 0; counter < gridSize **2; counter++){
         let newDiv = document.createElement('div');
@@ -37,44 +44,24 @@ function removeColor(coloredPixels){
     });
 }
 
-
-
-
-// console.log(hover)
-
-const eachPixel = document.querySelectorAll('.content div');
-
-
-function reset(){
+function reset(gridSize = 20){
      removeGrid()
-     createGrid(50);
+     createGrid(gridSize);
+     slider.value = gridSize;
+     valueHolder.innerHTML = gridSize
  }
 
 resetGrid.addEventListener('click', function() {
     reset()
 })
 
+slider.oninput = 
+ function() {
+     valueHolder.innerHTML =
+     slider.value;
+ };
 
 
-//  const slider = document.getElementById('slider');
-
-// const slideWrapper = document.querySelector('.slideWrapper');
-// const valueHolder = document.createElement('span');
-// var start_value = slider.getAttribute("value");
-// const grid = document.querySelector('.content');
-
-// valueHolder.innerHTML = start_value;
-
-// slider.oninput = 
-// function() {
-//     valueHolder.innerHTML =
-//     slider.value;
-// }
-
-// slideWrapper.appendChild(valueHolder)
-
-
- slider.addEventListener('mouseup', () =>  {
-       let slideNumber = slider.value;
-       reset(slideNumber);
-   })
+slider.addEventListener('mouseup', () =>  {
+    reset(slider.value);
+});
