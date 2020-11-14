@@ -6,16 +6,16 @@ const slideWrapper = document.querySelector('.slideWrapper');
 const valueHolder = document.createElement('span');
 slideWrapper.appendChild(valueHolder);
 
-createGrid(initializeSlider(20))
+createGrid()
 
 function initializeSlider(initialValue){
     slider.value = initialValue;
     valueHolder.innerHTML = initialValue;
-    return(initialValue)
 }
 
 // takes the input 'gridSize' adds a grid and appends child divs to it, then calls add color 
-function createGrid(gridSize){
+function createGrid(gridSize = 20){
+    initializeSlider(gridSize)
     sketchContainer.setAttribute('style',`grid-template-columns: repeat(${gridSize}, 1fr);, grid-template-rows: repeat(${gridSize}, 1fr);` )
     for (let counter = 0; counter < gridSize **2; counter++){
         let newDiv = document.createElement('div');
@@ -34,19 +34,28 @@ function removeGrid(){
 }
 
 //sets the background of divs to a color when hovered over
-function addColor(){
+function addColor(color = 'blue'){
     let hover = document.querySelectorAll('.content div');
-    removeColor(hover);
     hover.forEach((item) => {
+        if (color == 'random'){
+            let color = randomColor()
         item.addEventListener('mouseover', () => {
-            item.setAttribute('style', 'background: blue;')
+            item.setAttribute('style', `background: ${color} ;`)
+            
         });
+            }
+        else{
+            item.addEventListener('mouseover', () => {
+                item.setAttribute('style', `background: ${color} ;`)
+            });
+        }
     });
 }
 
 //resets background to white
-function removeColor(coloredPixels){
-    coloredPixels.forEach((pixel) => {
+function removeColor(){
+    let deletion = document.querySelectorAll('.content div');
+    deletion.forEach((pixel) => {
         pixel.style.background = 'white';
     });
 }
@@ -57,6 +66,15 @@ function reset(gridSize = 20){
      createGrid(gridSize);
      slider.value = gridSize;
      valueHolder.innerHTML = gridSize
+ }
+
+ function randomColor(){
+     let hexCharacters = '0123456789ABCDEF'
+     let hash = '#'
+     for (let char =0; char < 6; char++){
+         hash += hexCharacters[Math.floor(Math.random() * 16)]
+    }
+    return(hash)
  }
 
 
@@ -75,3 +93,15 @@ slider.oninput =
 slider.addEventListener('mouseup', () =>  {
     reset(slider.value);
 });
+
+const picker = document.getElementById('color-picker');
+picker.onchange = 
+    function() {
+        addColor(picker.value)
+    }
+
+
+hexColor = document.getElementById('random')
+random.addEventListener('click', () => {
+    addColor('random')
+})
