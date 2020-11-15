@@ -4,20 +4,28 @@
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
 }
-body > section,
-body > header {
-  margin: 1.5rem auto;
+
+body > * {
+  margin: 2rem 0rem;
 }
+
 html {
   background-image: url("./Images/furley_bg.png");
+}
+body {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  min-height: 100vh;
 }
 .sketch-container {
   position: relative;
   display: block;
-  border: rgba(red, green, blue, alpha);
-  width: 70vw;
-
+  margin: 2rem 0rem;
+  width: 300px;
   background: white;
   box-shadow: 5px 5px 15px 5px #000000;
   border: #5cfffa solid 10px;
@@ -29,12 +37,13 @@ html {
 }
 button,
 input {
-  padding: 5px 15px;
+  padding: 2.5px 5px;
   border: #ff855c solid 2px;
   color: black;
   font-size: 1rem;
   background: white;
   border-radius: 5px;
+  box-sizing: content-box;
 }
 button:hover,
 input:hover {
@@ -46,10 +55,10 @@ input:focus {
   outline: none;
 }
 .button-wrapper {
-  width: 75vw;
+  width: 300px;
   display: flex;
   justify-content: space-between;
-  margin-top: 1rem;
+  margin: 1rem 0px;
 }
 
 .content {
@@ -62,16 +71,12 @@ input:focus {
 
 .content div {
 }
+
 .slideWrapper {
-  width: 200px;
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
 }
-.slideformat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.number {
+  width: 30px;
 }
 
 h1 {
@@ -84,9 +89,47 @@ h1 {
 .reset-wrapper {
   display: flex;
   justify-content: space-between;
-  width: 75vw;
+
+  width: 300px;
+}
+
+.slideformat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 header {
   margin-bottom: 0px;
+}
+
+.slider {
+  width: 90%;
+  height: 0px;
+  border-radius: 20px;
+  -webkit-appearance: none;
+  background: white;
+  border: #ff855c solid 2px;
+}
+.slideformat span {
+  margin-left: 12px;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 30px;
+  background: #ff855c;
+}
+
+.Pixels {
+  position: relative;
+  left: 50px;
+  font-size: 1rem;
+}
+
+.reset-button {
+  position: relative;
+  bottom: 2.5px;
 }
