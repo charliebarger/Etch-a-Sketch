@@ -38,12 +38,11 @@ function addColor(color = 'black'){
     let hover = document.querySelectorAll('.content div');
     hover.forEach((item) => {
         if (color == 'random'){
-            let color = randomColor()
             item.addEventListener('mouseover', () => {
+            let color = randomColor()
             item.setAttribute('style', `background: ${color} ;`)
-            
-        });
-            }
+            });
+        }
         else{
             item.addEventListener('mouseover', () => {
                 item.setAttribute('style', `background: ${color} ;`)
@@ -93,7 +92,7 @@ slider.oninput =
 //when you release the slider, call reset with the value the slider was released on
 let fixColor;
 slider.addEventListener('mouseup', () =>  {
-    reset(slider.value, fixColor);
+    reset(slider.value);
 });
 
 const picker = document.getElementById('color-picker');
