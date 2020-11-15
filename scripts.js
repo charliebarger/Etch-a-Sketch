@@ -7,6 +7,7 @@ const valueHolder = document.createElement('span');
 slideWrapper.appendChild(valueHolder);
 
 createGrid()
+addColor()
 
 function initializeSlider(initialValue){
     slider.value = initialValue;
@@ -22,7 +23,6 @@ function createGrid(gridSize = 20){
         newDiv.classList.add('pexels')
         sketchContainer.appendChild(newDiv);
     };
-    addColor()
 } 
   
 //removes every child div from the .content wrapper
@@ -34,12 +34,12 @@ function removeGrid(){
 }
 
 //sets the background of divs to a color when hovered over
-function addColor(color = 'blue'){
+function addColor(color = 'black'){
     let hover = document.querySelectorAll('.content div');
     hover.forEach((item) => {
         if (color == 'random'){
             let color = randomColor()
-        item.addEventListener('mouseover', () => {
+            item.addEventListener('mouseover', () => {
             item.setAttribute('style', `background: ${color} ;`)
             
         });
@@ -61,11 +61,12 @@ function removeColor(){
 }
 
 //resets grid
-function reset(gridSize = 20){
+function reset(gridSize = 20, color){
      removeGrid()
      createGrid(gridSize);
      slider.value = gridSize;
-     valueHolder.innerHTML = gridSize
+     valueHolder.innerHTML = gridSize;
+     addColor(color)
  }
 
  function randomColor(){
@@ -79,7 +80,7 @@ function reset(gridSize = 20){
 
 
 resetGrid.addEventListener('click', function() {
-    reset()
+    reset(20, fixColor)
 })
 
 //visual representation of the sliders value as it changes in real time 
@@ -90,18 +91,35 @@ slider.oninput =
  };
 
 //when you release the slider, call reset with the value the slider was released on
+let fixColor;
 slider.addEventListener('mouseup', () =>  {
-    reset(slider.value);
+    reset(slider.value, fixColor);
 });
 
 const picker = document.getElementById('color-picker');
 picker.onchange = 
     function() {
-        addColor(picker.value)
+        fixColor = picker.value;
+        addColor(fixColor)
     }
 
 
 hexColor = document.getElementById('random')
 random.addEventListener('click', () => {
-    addColor('random')
+    fixColor = 'random';
+    addColor(fixColor);
 })
+
+erasor = document.getElementById('erasor')
+erasor.addEventListener('click', () => {
+    fixColor = 'white';
+    addColor(fixColor);
+} )
+
+black = document.getElementById('black')
+
+black.addEventListener('click', () => {
+    fixColor = 'black';
+    addColor(fixColor)
+}
+)
