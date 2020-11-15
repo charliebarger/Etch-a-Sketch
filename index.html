@@ -16,24 +16,29 @@
     <header>
         <h1>Etch-A-Sketch</h1>
     </header>
+<section>
     <section class="button-wrapper">
         <button id="black">Black</button>
         <input type="color" id="color-picker">
-        <button id="random">Rainbow</button>
+        <button id="rainbow">Rainbow</button>
         <button id="erasor">Erasor</button>
     </section>
     <section class="sketch-container">
         <div class="content"></div>
     </section>
+    <div>
+    <span class="Pixels">Pixel Size</span>
     <section class="reset-wrapper">
-        <button class="reset-button">Reset</button>
         <div class="slideformat">
-            <span>Pixel Size</span>
             <section class="slideWrapper">
                 <input type="range" min="1" max="100" value="50" id="slider" class='slider'>
             </section>
         </div>
+        <button class="reset-button">Reset</button>
+    </div>
     </section>
+    </div>
+</section>
 </body>
 
 <script src="./scripts.js"></script>
