@@ -3,45 +3,46 @@ let fixColor;
 const sketchContainer = document.querySelector('.content');
 const resetGrid = document.querySelector('.reset-button');
 const slider = document.getElementById('slider');
-const slideWrapper = document.querySelector('.slideformat');
+const slideWrapper = document.querySelector('.slider-format');
 const valueHolder = document.createElement('span');
-valueHolder.classList.add('number')
+valueHolder.classList.add('number');
 slideWrapper.appendChild(valueHolder);
 const picker = document.getElementById('color-picker');
 rainbow = document.getElementById('rainbow');
 erasor = document.getElementById('erasor');
-black = document.getElementById('black')
+black = document.getElementById('black');
 
 
-createGrid()
-addColor()
-
-function initializeSlider(initialValue){
-    slider.value = initialValue;
-    valueHolder.innerHTML = initialValue;
-}
+createGrid();
+addColor();
 
 // takes the input 'gridSize' adds a grid and appends child divs to it, then calls add color 
 function createGrid(gridSize = 20){
-    initializeSlider(gridSize)
+    initializeSlider(gridSize);
     sketchContainer.setAttribute('style',`grid-template-columns: repeat(${gridSize}, 1fr);, grid-template-rows: repeat(${gridSize}, 1fr);` )
-    appendPixels(gridSize)
+    appendPixels(gridSize);
 } 
 
 //appends divs to grid
 function appendPixels (numberOfPixels){
     for (let counter = 0; counter < numberOfPixels **2; counter++){
         let newDiv = document.createElement('div');
-        newDiv.classList.add('pexels')
+        newDiv.classList.add('pexels');
         sketchContainer.appendChild(newDiv);
     };
+}
+
+//changes slider numnber
+function initializeSlider(initialValue){
+    slider.value = initialValue;
+    valueHolder.innerHTML = initialValue;
 }
   
 //removes every child div from the .content wrapper
 function removeGrid(){
-    let eachChild = document.querySelectorAll('.content div')
+    let eachChild = document.querySelectorAll('.content div');
     eachChild.forEach((child) => {
-        child.remove()
+        child.remove();
     }); 
 }
 
@@ -90,7 +91,7 @@ function reset(gridSize = 20, color){
     return(hash)
  }
 
- //visual representation of the sliders value
+//visual representation of the sliders value
 slider.oninput = 
  function() {
      valueHolder.innerHTML =
@@ -99,7 +100,7 @@ slider.oninput =
 
 //Event Listners
 
- resetGrid.addEventListener('click', function() {
+resetGrid.addEventListener('click', function() {
     reset(20, fixColor)
 })
 
@@ -110,7 +111,7 @@ slider.addEventListener('mouseup', () =>  {
 picker.onchange = 
     function() {
         fixColor = picker.value;
-        addColor(fixColor)
+        addColor(fixColor);
     }
 
 rainbow.addEventListener('click', () => {
@@ -125,6 +126,6 @@ erasor.addEventListener('click', () => {
 
 black.addEventListener('click', () => {
     fixColor = 'black';
-    addColor(fixColor)
+    addColor(fixColor);
 }
 )
