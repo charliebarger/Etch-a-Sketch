@@ -1,1 +1,1 @@
-# Live page > [downlaod](https://charliebarger.github.io/Etch-a-Sketch/)
+# Live page > [Etch-A-Sketch](https://charliebarger.github.io/Etch-a-Sketch/)
